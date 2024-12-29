@@ -1,0 +1,21 @@
+CREATE TABLE ConsolidatedPokemonCards (
+    CardName VARCHAR(255) NOT NULL,  -- Name of the Pokémon card
+    TotalCards INT NOT NULL,         -- Total number of cards with this name
+    DistinctSets INT NOT NULL,       -- Number of unique sets for this card name
+    Rarities TEXT                    -- List of rarities associated with this card
+);
+
+INSERT INTO ConsolidatedPokemonCards (CardName, TotalCards, DistinctSets, Rarities)
+SELECT 
+    CardName, 
+    COUNT(*) AS TotalCards,              -- Count of cards with the same name
+    COUNT(DISTINCT CardSet) AS DistinctSets, -- Count of unique sets for the card
+    GROUP_CONCAT(DISTINCT Rarity) AS Rarities -- Concatenate unique rarities into a string
+FROM 
+    PokemonCards
+GROUP BY 
+    CardName;
+
+--Example: Query the summary table to see the results
+SELECT * FROM ConsolidatedPokemonCards;
+
