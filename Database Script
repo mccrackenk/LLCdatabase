@@ -1,0 +1,7 @@
+CREATE TABLE PokemonCards (
+    CardID INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each card
+    CardName VARCHAR(255) NOT NULL,        -- Name of the Pokémon card
+    CardNumber VARCHAR(50) NOT NULL,       -- Card number (e.g., "001/100")
+    CardSet VARCHAR(255) NOT NULL,         -- The set the card belongs to
+    Rarity VARCHAR(50) NOT NULL            -- Rarity (e.g., "Common", "Rare", "Ultra Rare")
+);
